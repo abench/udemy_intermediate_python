@@ -52,3 +52,19 @@ def timer(func):
         print("Time of function {} execution  is {} sec".format(func.__name__, duration))
         return result
     return wrapper
+
+
+def show_picture_and_ask_keyboard():
+    """
+    A decorator that takes a picture from the wrapping function,
+    shows it in the window and asks a keyboard.
+ 
+    :return: Code of a pressed key     """""
+    def function_wrapper(func):
+        @functools.wraps(func)
+        def wrapper(*args,**kwargs):
+            picture = func(*args, **kwargs)
+            cv2.imshow('frame', picture)
+            return cv2.waitKey(1)
+        return wrapper
+    return function_wrapper
