@@ -31,6 +31,14 @@ def count_words(s):
 
     return dict(counts)
 
+print(count_words(lines[0]))
+counted_words_map = (list(map(count_words, lines)))
 
-print(dict(count_words(lines[0])))
+from collections import Counter
+def reduce_counts(x, y):
+    counter = Counter()
+    counter.update(x)
+    counter.update(y)
+    return dict(counter)
 
+print(reduce(reduce_counts, counted_words_map, {}))
